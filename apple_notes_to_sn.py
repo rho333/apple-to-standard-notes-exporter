@@ -1,8 +1,8 @@
 import sys, sqlite3
 import uuid as py_uuid
 import hashlib
-from bs4 import BeautifulSoup
 import html2text
+import json
 from datetime import datetime
 
 #/Users/richardho/Library/Containers/com.apple.Notes/Data/Library/Notes/NotesV7.storedata
@@ -113,13 +113,13 @@ def load_notes(target_db):
 
 if __name__ == "__main__":
     args = sys.argv
-	if len(args) > 1:
-		target_db = args[1]
-	else:
-		target_db = input("Please enter DB file path: ")
-	notes = load_notes(target_db)
-	sn_export_data = json.dumps(generate_sn_export(notes))
-	
-	outfile = open('Standard_Notes-apple_notes_export.txt', 'w')
-	outfile.write(sn_export_data)
-	outfile.close()
+    if len(args) > 1:
+        target_db = args[1]
+    else:
+        target_db = input("Please enter DB file path: ")
+    notes = load_notes(target_db)
+    sn_export_data = json.dumps(generate_sn_export(notes))
+    
+    outfile = open('Standard_Notes-apple_notes_export.txt', 'w')
+    outfile.write(sn_export_data)
+    outfile.close()
